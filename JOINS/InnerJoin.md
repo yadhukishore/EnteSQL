@@ -95,3 +95,6 @@ ON country.co_code = capital.co_code;
    +---------+------------+
    ```
    This result shows the capital cities (`cap_name`) corresponding to the countries (`co_code`) listed in the `country` table, based on the foreign key relationship established between `co_code` in the `country` table and `co_code` in the `capital` table.
+
+
+# This result is like the commom things in both table (Common columns in both table) it is called *Inner join*
