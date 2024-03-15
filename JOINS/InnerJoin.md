@@ -98,3 +98,5 @@ ON country.co_code = capital.co_code;
 
 
 # This result is like the commom things in both table (Common columns in both table) it is called *Inner join*
+![image](https://github.com/yadhukishore/EnteSQL/assets/110115711/6e5bc93d-215d-4d4e-862c-2c58f5731928)
+
