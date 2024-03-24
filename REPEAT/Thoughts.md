@@ -171,3 +171,141 @@ VALUES
 Now, we have successfully transformed the original table into 1NF. The `customers` table contains unique customer information, and the `customer_cities` table stores the cities associated with each customer, avoiding repeating groups of data.
 
 This ensures that every column of a table contains only atomic values, fulfilling the requirements of the first normal form (1NF).
+
+##  2NF:-
+
+Let's simplify the concept of the Second Normal Form (2NF):
+
+**Second Normal Form (2NF):**
+
+1. **Meet 1NF Requirements:** Before achieving 2NF, the table must already meet all the rules of the First Normal Form (1NF), which include having atomic values in each column and no repeating groups of data.
+
+2. **No Partial Dependencies:** In 2NF, there should be no partial dependencies of any non-key columns on part of the primary key. This means that every non-key column should be fully dependent on the entire primary key, not just part of it.
+
+**Example:**
+
+Consider a table that stores customer and order information:
+
+```sql
+CREATE TABLE customer_orders (
+   customer_id INT NOT NULL,
+   customer_name VARCHAR(20) NOT NULL,
+   order_id INT NOT NULL,
+   order_detail VARCHAR(20) NOT NULL,
+   sale_date DATETIME,
+   PRIMARY KEY (customer_id, order_id)
+);
+```
+
+In this table:
+- `customer_id` and `order_id` together form the primary key, ensuring unique combinations of customers and orders.
+- However, `customer_name`, `order_detail`, and `sale_date` are not fully dependent on both `customer_id` and `order_id`.
+- `customer_name` depends only on `customer_id`, and `order_detail` and `sale_date` depend only on `order_id`.
+
+To achieve 2NF, we need to split this table into multiple tables to eliminate partial dependencies:
+
+1. **Customers Table:**
+```sql
+CREATE TABLE customers (
+   customer_id INT PRIMARY KEY,
+   customer_name VARCHAR(20) NOT NULL
+);
+```
+
+2. **Orders Table:**
+```sql
+CREATE TABLE orders (
+   order_id INT PRIMARY KEY,
+   order_detail VARCHAR(20) NOT NULL,
+   sale_date DATETIME
+);
+```
+
+3. **CustomerOrders Table:**
+```sql
+CREATE TABLE customer_orders (
+   customer_id INT NOT NULL,
+   order_id INT NOT NULL,
+   PRIMARY KEY (customer_id, order_id),
+   FOREIGN KEY (customer_id) REFERENCES customers(customer_id),
+   FOREIGN KEY (order_id) REFERENCES orders(order_id)
+);
+```
+
+Now, each table has a clear purpose, and there are no partial dependencies between columns and parts of the primary key, satisfying the requirements of 2NF.
+
+*Check 3nf in the link*
+# joins
+Let's simplify the concept of SQL joins:
+
+**SQL Joins:**
+
+SQL joins are used to combine data from two or more tables based on a related column between them. Joins help in retrieving records by linking fields from different tables using their foreign keys.
+
+**Basic Syntax:**
+```
+SELECT column_name(s)
+FROM table1
+JOIN table2
+ON table1.column_name = table2.column_name;
+```
+
+**Example:**
+
+Consider two tables: `customers` and `orders`.
+
+```sql
+CREATE TABLE customers (
+   id INT PRIMARY KEY,
+   name VARCHAR(20) NOT NULL,
+   age INT NOT NULL
+);
+
+CREATE TABLE orders (
+   order_id INT PRIMARY KEY,
+   order_date DATE NOT NULL,
+   customer_id INT NOT NULL,
+   amount DECIMAL(18, 2)
+);
+```
+
+**Inner Join:**
+
+An inner join retrieves records that have matching values in both tables.
+
+```sql
+SELECT c.id, c.name, c.age, o.amount 
+FROM customers c
+JOIN orders o
+ON c.id = o.customer_id;
+```
+
+**Outer Join:**
+
+- **Left Join:** Returns all rows from the left table and the matched rows from the right table. If there is no match, NULL values are returned for the right table columns.
+
+```sql
+SELECT c.id, c.name, c.age, o.amount 
+FROM customers c
+LEFT JOIN orders o
+ON c.id = o.customer_id;
+```
+
+- **Right Join:** Returns all rows from the right table and the matched rows from the left table. If there is no match, NULL values are returned for the left table columns.
+
+```sql
+SELECT c.id, c.name, c.age, o.amount 
+FROM customers c
+RIGHT JOIN orders o
+ON c.id = o.customer_id;
+```
+
+- **Full Join:** Returns all rows when there is a match in one of the tables. If there is no match, NULL values are returned for unmatched columns.
+
+**Other Joins:**
+
+- **Self Join:** Used to join a table to itself as if the table were two tables, allowing comparisons within the same table.
+
+- **Cross Join:** Returns the Cartesian product of the sets of records from the two or more joined tables, resulting in all possible combinations of rows.
+
+By understanding and utilizing these SQL joins, you can effectively retrieve and combine data from multiple tables based on the specified conditions.
