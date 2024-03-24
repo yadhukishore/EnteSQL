@@ -76,6 +76,9 @@
 
 All three operations are used in SQL to manipulate and retrieve data from multiple sources, but they serve different purposes and are used in different scenarios depending on the requirements of the query.
 
+![image](https://github.com/yadhukishore/EnteSQL/assets/110115711/0e9bc48e-459f-453a-a841-344b9e1059f9)
+
+
 # Practical Stuffs:-
 
 
