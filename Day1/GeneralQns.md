@@ -40,16 +40,7 @@
 
 These questions cover a range of topics from basic to intermediate SQL concepts. Preparing answers to these questions will help you demonstrate your understanding of SQL and its applications in database management.
 
-Citations:
-[1] https://www.interviewbit.com/sql-interview-questions/
-[2] https://www.datacamp.com/blog/top-sql-interview-questions-and-answers-for-beginners-and-intermediate-practitioners
-[3] https://www.geeksforgeeks.org/sql-interview-questions/
-[4] https://www.reddit.com/r/SQL/comments/y2up02/typical_sql_interview_questions_for_data_analysts/
-[5] https://www.simplilearn.com/top-sql-interview-questions-and-answers-article
-[6] https://www.edureka.co/blog/interview-questions/sql-interview-questions
-[7] https://www.linkedin.com/pulse/top-50-sql-interview-questions-data-analystscientist-role-dikshit
-[8] https://www.toptal.com/sql/interview-questions
-[9] https://www.reddit.com/r/SQL/comments/u1j480/any_possible_interview_questions/
+
 
 
 ```sql
